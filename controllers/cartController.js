@@ -16,12 +16,13 @@ const Cart = require('../models/cart')
         else{
             cart.item.push({productId,name,price})
         }
+        
         await cart.save()
         res.json({cart,message:"item added to cart"})
  }
 
 exports.getCart = async(req,res)=>{
-    const cart =await Cart.findOne({userId:req.user.id})
+    const cart =await Cart.findOne({userID:req.user.id})
     res.json(cart? cart.item:[])
 }
 
